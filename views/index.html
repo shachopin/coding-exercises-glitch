@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <link rel="stylesheet" href="https://ojet-lib-staging.bitballoon.com/css/libs/oj/v3.1.0/alta/oj-alta-min.css" />
+   <link rel="stylesheet" href="css/style.css" />
+   <script src="https://www.gstatic.com/firebasejs/3.7.8/firebase.js"></script>
+   <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBA9YvNxfH7OVaNPLddKY1cEgAaWh2sh9M",
+        authDomain: "gomix-coding-exericises.firebaseapp.com",
+        databaseURL: "https://gomix-coding-exericises.firebaseio.com",
+        projectId: "gomix-coding-exericises",
+        storageBucket: "gomix-coding-exericises.appspot.com",
+        messagingSenderId: "811609865523"
+      };
+      firebase.initializeApp(config);
+   </script>
+   <script src="oraclejet/require.js" data-main="oraclejet/main.js"></script>
+   
+  </head>
+  <body>
+    <div id="sunburst-container">      
+        <div id="sunburst" data-bind="ojComponent: {
+                  component: 'ojSunburst',
+                  animationOnDisplay: 'auto',
+                  animationOnDataChange: 'auto',
+                  nodes: nodeValues,
+                  drilling: 'on',
+                  selectionMode: 'none'
+              }" 
+              style="max-width:650px;width:100%; height:650px; margin:0 auto"> 
+                  <!-- selectionMode: 'none', so that drilldown will be triggered by single click, without this drilldown will be triggered by double click-->
+        </div> 
+    </div>
+  </body>
+</html>
