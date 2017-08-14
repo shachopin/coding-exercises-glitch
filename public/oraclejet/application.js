@@ -1,11 +1,12 @@
 define(function(){ //NOTICE the module being dependent on has to be inside define()),
-  require(['ojs/ojcore', 'knockout', 'jquery', 'questionBank', 'ojs/ojknockout'],  // here you are using require because this is a running immediatly and once, not a resuable module 
-  //'ojs/ojsunburst' doesn't have to be in the dependency array, because it was loaded as in depdency array for questionBank module already
-  function(oj, ko, $, questionBank)
+  require(['knockout', 'jquery', 'questionBank', 'ojs/ojknockout'],  // here you are using require because this is a running immediatly and once, not a resuable module 
+  //or you can remove the require, and put the dependency array directly in the define function as the first argument
+  //ojs/ojcore', 'ojs/ojsunburst' don't have to be in this dependency array, because it was loaded as in depdency array for questionBank module already
+  function(ko, $, questionBank)
   {   
       function SunburstModel() {
           var self = this;
-          self.nodeValues = ko.observableArray([]);
+          self.nodeValues = ko.observableArray([]);//has to use observableArray here even for just one-way databinding, because need to monitor the data change for the first render
           grabNodesFromQuestionBank();
           //utiliy function
           function grabNodesFromQuestionBank() {
@@ -26,6 +27,7 @@ define(function(){ //NOTICE the module being dependent on has to be inside defin
       function()
       {
           ko.applyBindings(sunburstModel, document.getElementById('sunburst-container'));
+          //jquery logic starts here
           $('#sunburst').dblclick(  //because click has been hijacked by ojet sunburst to allow drilldown, so you have to use dblclick to go to external link
             function(event) {
                 var nodeContext;
